@@ -1,5 +1,6 @@
 package inputs;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,12 +20,12 @@ public class Context {
 		return c.openConnection();
 	}
 	
-	public List<HashMap<String,Object>> read(){
-		return c.readFile();
+	public List<HashMap<String,String>> read(Object connection){
+		return c.readFile(connection);
 	}
 	
-	public Object closeConnection(){
-		return c.closeConnection();
+	public void closeConnection(Object connection){
+		c.closeConnection(connection);
 	}
 	
 }

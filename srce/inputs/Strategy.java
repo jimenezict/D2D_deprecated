@@ -1,5 +1,6 @@
 package inputs;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,8 +8,8 @@ public interface Strategy {
 
 	Object openConnection();
 	
-	List<HashMap<String, Object>> readFile();
+	List<HashMap<String, String>> readFile(Object connection);
 
-	Object closeConnection();
+	void closeConnection(Object connection);
 
 }
