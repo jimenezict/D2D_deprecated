@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -67,5 +69,13 @@ public class CSVStrategyTest {
 		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
 		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
 		context.closeConnection(testConnection);
+	}
+	
+	@Test
+	public void readFile() {
+		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
+		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
+		List<HashMap<String,String>> listCSVfile = context.read(testConnection);
+		assertEquals(listCSVfile.size(),1988);
 	}
 }
