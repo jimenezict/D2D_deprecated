@@ -15,7 +15,7 @@ public class ImportProcedure {
 	
 	public void importTask(List<HashMap<String, String>> importData){
 		importData.forEach((line) -> {
-			setFountainDTO(line);
+			insertOrUpdate(setFountainDTO(line));
 		});
 	}
 	
@@ -26,6 +26,10 @@ public class ImportProcedure {
 		fountain.setXcordenate(line.get(importMetadata.getMapping().get("xcordenate")));
 		fountain.setYcordenate(line.get(importMetadata.getMapping().get("ycordenate")));
 		return fountain;
+	}
+	
+	private void insertOrUpdate(FountainDTO fountain){
+		
 	}
 
 }
