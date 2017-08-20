@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import etl.ImportMetadata;
 import etl.ImportProcedure;
+import etl.model.ImportMetadata;
 import inputs.ContextFacade;
 
 public class ImportProcedureTest {

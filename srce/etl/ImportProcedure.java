@@ -3,8 +3,11 @@ package etl;
 import java.util.HashMap;
 import java.util.List;
 
+import etl.model.ImportMetadata;
+
 public class ImportProcedure {
 	ImportMetadata importMetadata;
+	
 		
 	public ImportProcedure(ImportMetadata importMetadata){
 		if(importMetadata == null){
@@ -29,7 +32,7 @@ public class ImportProcedure {
 	}
 	
 	private void insertOrUpdate(FountainDTO fountain){
-		
+		FountainDAO.insertOrUpdate(fountain);
 	}
 
 }
