@@ -1,5 +1,6 @@
 package inputs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,5 +16,17 @@ public class ContextFacade {
 		List<HashMap<String, String>> results = context.read(connection);
 		context.closeConnection(connection);
 		return results;
+	}
+	
+	public List<String> exploreHeaders(){
+		Object connection = context.openConnection();
+		List<HashMap<String, String>> results = context.read(connection);
+		context.closeConnection(connection);
+		if(results.size() > 0){
+			List<String> returningList = new ArrayList<String>(results.get(0).keySet());
+			return (List<String>) returningList;
+		}
+			
+		return null;
 	}
 }
