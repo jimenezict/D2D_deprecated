@@ -3,7 +3,7 @@ package inputs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.ProcessBuilder.Redirect.Type;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -12,22 +12,25 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
+import inputs.webserviceJson.bcn.BarcelonaJSON;
 
 
 public class WebServiceStrategy implements Strategy{
 	
 	private String urlService;
-	BufferedReader rd = null;
-	Gson gson;
+	private BufferedReader rd = null;
+	private Gson gson;
+	private Type mappingClass;
 	
-	public WebServiceStrategy(String urlService){
+	public WebServiceStrategy(String urlService, Type mappingClass){
 		super();
 		this.urlService = urlService;	
 		if(urlService == null||!booleanIsValidName()){
 			throw new IllegalArgumentException();
 		}
 		gson = new Gson();
+		this.mappingClass = mappingClass;
 	}
 	
 	@Override
@@ -50,16 +53,9 @@ public class WebServiceStrategy implements Strategy{
 	@Override
 	public List<HashMap<String, String>> readFile(Object connection) {		
 		String inputString = readWebService(connection);
-		String usefulData = getUsefulData(inputString,"\"records\": ");
-		java.lang.reflect.Type type = new TypeToken<List<String>>(){}.getType();
-		gson.fromJson(usefulData, type);
-		return null;
-	}
-
-	private String getUsefulData(String inputString, String dataTag) {
-		int startPosition = inputString.indexOf(dataTag) + 11;
-		return inputString.substring(startPosition, inputString.indexOf("}]", startPosition) + 2);		
-	}
+		BarcelonaJSON barcelonaJSON = gson.fromJson(inputString, mappingClass);
+		return barcelonaJSON.getFields();
+	}	
 
 	@Override
 	public void closeConnection(Object connection) {		

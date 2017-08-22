@@ -1,5 +1,6 @@
 package inputs;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,10 @@ public class ContextFacade {
 	
 	public void ContextCSV(String fileName){
 		context = new Context(new CSVStrategy(fileName));
+	}
+	
+	public void ContextWS(String url, Type type){
+		context = new Context(new WebServiceStrategy(url,type));
 	}
 	
 	public List<HashMap<String, String>> extractData(){
