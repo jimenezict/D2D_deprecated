@@ -45,14 +45,14 @@ public class CSVStrategyTest {
 	
 	@Test
 	public void openBarcelonaFile() {
-		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
+		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610.csv"));
 		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
 		assertNotNull(testConnection);
 	}
 	
 	@Test
 	public void correctHeadersOnBarcelonaFile() {
-		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
+		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610.csv"));
 		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
 		String[] strHeaderList = null;
 		try {
@@ -66,14 +66,14 @@ public class CSVStrategyTest {
 	
 	@Test
 	public void openAndCloseConnection() {
-		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
+		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610.csv"));
 		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
 		context.closeConnection(testConnection);
 	}
 	
 	@Test
 	public void readFile() {
-		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\srce\\inputs\\tests\\0_Fonts_201610.csv"));
+		Context context = new Context(new CSVStrategy("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610.csv"));
 		ICsvMapReader testConnection = (ICsvMapReader) context.openConnection();
 		List<HashMap<String,String>> listCSVfile = context.read(testConnection);
 		assertEquals(listCSVfile.size(),1988);

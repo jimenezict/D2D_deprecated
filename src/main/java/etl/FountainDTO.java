@@ -5,6 +5,7 @@ public class FountainDTO {
 	private String ycordenate;
 	private String origineCodeId;
 	private String origine;
+	private int id;
 	
 	public String getXcordenate() {
 		return xcordenate;
@@ -29,5 +30,11 @@ public class FountainDTO {
 	}
 	public void setOrigine(String origine) {
 		this.origine = origine;
-	}	
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}		
 }

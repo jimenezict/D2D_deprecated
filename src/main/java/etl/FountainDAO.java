@@ -1,19 +1,41 @@
 package etl;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class FountainDAO {
+	ApplicationContext ctx=new FileSystemXmlApplicationContext("C:\\2D2\\git\\D2D\\WebContent\\WEB-INF\\applicationContext.xml");
+	JdbcTemplate jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
 	
-	public static void insertOrUpdate(FountainDTO fountain){
-		isElementOnDatabase(fountain);
+	public int testConnection(){
+		return (int) jdbcTemplate.queryForObject("select 1 from dual", Integer.class);
 	}
 	
-	private static boolean isElementOnDatabase(FountainDTO fountain){
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String isElementOnDatabase = "select count(*) from table1 where origine = ? and origineCode = ?";
-		int numResults = jdbcTemplate.queryForObject(isElementOnDatabase, Integer.class, fountain.getOrigine(),fountain.getOrigineCodeId());
-		if(numResults > 0) 
-			return true;
-		return false;		
+	public int insert(FountainDTO fountain){
+		int id = 0;
+		String insertSQL = "INSERT INTO FOUNTAINS (xcordenate,ycordenate,origineCodeId,origine) "
+				+ "VALUES ("
+				+ "'" + fountain.getXcordenate()+"',"
+				+ "'" + fountain.getYcordenate()+"',"		
+				+ "'" + fountain.getOrigineCodeId()+"',"
+				+ "'" + fountain.getOrigine()+"')";
+		try{
+			id = jdbcTemplate.update(insertSQL);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return id;
+	}
+	
+	public int countvalues(String table){
+		int id = 0;
+		String countSQL = "SELECT COUNT(*) FROM " + table;
+		try{
+			id = jdbcTemplate.queryForInt(countSQL);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return id;
 	}
 }

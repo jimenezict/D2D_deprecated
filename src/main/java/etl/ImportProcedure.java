@@ -7,7 +7,7 @@ import etl.model.ImportMetadata;
 
 public class ImportProcedure {
 	ImportMetadata importMetadata;
-	
+	FountainDAO fountainDAO = new FountainDAO();
 		
 	public ImportProcedure(ImportMetadata importMetadata){
 		if(importMetadata == null){
@@ -18,8 +18,12 @@ public class ImportProcedure {
 	
 	public void importTask(List<HashMap<String, String>> importData){
 		importData.forEach((line) -> {
-			insertOrUpdate(setFountainDTO(line));
+			insert(setFountainDTO(line));
 		});
+	}
+	
+	public int numberOfRegisters(){
+		return fountainDAO.countvalues("fountainS");
 	}
 	
 	private FountainDTO setFountainDTO(HashMap<String, String> line){
@@ -31,8 +35,8 @@ public class ImportProcedure {
 		return fountain;
 	}
 	
-	private void insertOrUpdate(FountainDTO fountain){
-		FountainDAO.insertOrUpdate(fountain);
+	private void insert(FountainDTO fountain){
+		fountainDAO.insert(fountain);
 	}
 
 }
