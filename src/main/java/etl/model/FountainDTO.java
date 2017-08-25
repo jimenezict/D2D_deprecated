@@ -1,4 +1,4 @@
-package etl;
+package etl.model;
 
 public class FountainDTO {
 	private String xcordenate;

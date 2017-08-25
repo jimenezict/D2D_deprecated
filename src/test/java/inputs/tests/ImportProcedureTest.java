@@ -25,7 +25,7 @@ public class ImportProcedureTest {
 	
 	@Before public void initialize() {
 		contextCSV = new ContextFacade();
-		contextCSV.ContextCSV("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610.csv");
+		contextCSV.ContextCSV("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\0_Fonts_201610Short.csv");
 		listFileCSV = contextCSV.extractData();
 		
 		contextWSBarcelona = new ContextFacade();
@@ -44,7 +44,7 @@ public class ImportProcedureTest {
 
 	@Test
 	public void testContextCSVFacade() {		
-		assertEquals(listFileCSV.size(),1988);
+		assertEquals(listFileCSV.size(),4);
 	}
 	
 	@Test
@@ -81,5 +81,5 @@ public class ImportProcedureTest {
 		int initialCount = importProcedure.numberOfRegisters();
 		importProcedure.importTask(listFileWebService);
 		int finalCount = importProcedure.numberOfRegisters();
-	}
+	}	
 }

@@ -3,6 +3,7 @@ package etl;
 import java.util.HashMap;
 import java.util.List;
 
+import etl.model.FountainDTO;
 import etl.model.ImportMetadata;
 
 public class ImportProcedure {
@@ -23,8 +24,8 @@ public class ImportProcedure {
 	}
 	
 	public int numberOfRegisters(){
-		return fountainDAO.countvalues("fountainS");
-	}
+		return fountainDAO.countvalues("fountains");
+	}	
 	
 	private FountainDTO setFountainDTO(HashMap<String, String> line){
 		FountainDTO fountain = new FountainDTO();
