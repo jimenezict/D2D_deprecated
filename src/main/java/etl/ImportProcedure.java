@@ -37,7 +37,7 @@ public class ImportProcedure {
 	}
 	
 	private void insert(FountainDTO fountain){
-		fountainDAO.insert(fountain);
+		fountainDAO.insertIfNew(fountain);
 	}
 
 }

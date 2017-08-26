@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import etl.FountainDAO;
@@ -40,6 +40,13 @@ public class ImportProcedureTest {
 		importMetadataCSV = new ImportMetadata(mapping,"BarcelonaTestCSV");
 		importMetadataWS = new ImportMetadata(mapping,"BarcelonaTestWS");
 		fountainDAO = new FountainDAO();
+		fountainDAO.removeByCondition("Origine", "BarcelonaTestCSV");
+		fountainDAO.removeByCondition("Origine", "BarcelonaTestWS");
+	}
+	
+	@After public void finalize(){
+		fountainDAO.removeByCondition("Origine", "BarcelonaTestCSV");
+		fountainDAO.removeByCondition("Origine", "BarcelonaTestWS");
 	}
 
 	@Test
