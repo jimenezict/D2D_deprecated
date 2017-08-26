@@ -14,10 +14,12 @@ import org.supercsv.prefs.CsvPreference;
 public class CSVStrategy implements Strategy{
 	
 	private String fileName;
+	private CsvPreference csvPreference;
 	
 	public CSVStrategy(String fileName){
 		super();
 		this.fileName = fileName;	
+		csvPreference = CsvPreference.STANDARD_PREFERENCE;
 	}
 	
 	@Override
@@ -27,7 +29,7 @@ public class CSVStrategy implements Strategy{
 		}
 		ICsvMapReader listReader = null;
 		try {
-			listReader = new CsvMapReader(new FileReader(fileName), CsvPreference.STANDARD_PREFERENCE);
+			listReader = new CsvMapReader(new FileReader(fileName), csvPreference);
 		} catch (FileNotFoundException e) {
 			
 		}
@@ -68,6 +70,10 @@ public class CSVStrategy implements Strategy{
 			return false;
 		}
 		return true;
+	}
+	
+	public void setCsvPreference(CsvPreference csvPreference){
+		this.csvPreference = csvPreference;
 	}
 
 }
