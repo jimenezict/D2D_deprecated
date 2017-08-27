@@ -6,3 +6,5 @@ origineCodeId VARCHAR(30),
 origine varchar(50),
 reg_date TIMESTAMP
 );
+
+alter table fountains add comments TEXT;

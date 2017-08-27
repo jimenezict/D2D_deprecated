@@ -15,7 +15,7 @@ import etl.model.ImportMetadata;
 import inputs.ContextFacade;
 import inputs.webserviceJson.bcn.BarcelonaJSON;
 
-public class ImportProcedureMadridTest {
+public class ImportProcedureValenciaTest {
 	List<HashMap<String, String>> listFileCSV,listFileWebService;
 	ImportMetadata importMetadataCSV,importMetadataWS;
 	ContextFacade contextCSV;
@@ -25,27 +25,25 @@ public class ImportProcedureMadridTest {
 	
 	@Before public void initialize() {
 		contextCSV = new ContextFacade();
-		contextCSV.ContextCSVSemiColon("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\InventarioFuentesShort.csv");
+		contextCSV.ContextCSVSemiColon("C:\\2D2\\git\\D2D\\src\\test\\java\\inputs\\tests\\CIA_FUENTESShort.csv");
 
 		listFileCSV = contextCSV.extractData();		
 		
 		HashMap<String, String> mapping = new HashMap<String, String>();
-		mapping.put("xcordenate", "COORD. X");
-		mapping.put("ycordenate", "COORD. Y");
-		mapping.put("origineCodeId", "CODIGO");
-		mapping.put("comment1", "DISTRITO");
-		mapping.put("comment2", "DIRECCION");
-		mapping.put("comment3", "ESTADO");
+		mapping.put("xcordenate", "X");
+		mapping.put("ycordenate", "Y");
+		mapping.put("origineCodeId", "codigo");
+		mapping.put("comment1", "calle");
 		
-		importMetadataCSV = new ImportMetadata(mapping,"MadridCSV");
+		importMetadataCSV = new ImportMetadata(mapping,"ValenciaCSV");
 		
 		fountainDAO = new FountainDAO();
-		fountainDAO.removeByCondition("Origine", "MadridCSV");
+		fountainDAO.removeByCondition("Origine", "ValenciaCSV");
 		
 	}
 	
 	@After public void finalize(){
-		fountainDAO.removeByCondition("Origine", "MadridCSV");
+		fountainDAO.removeByCondition("Origine", "ValenciaCSV");
 	}
 
 	@Test
@@ -55,12 +53,12 @@ public class ImportProcedureMadridTest {
 	
 	@Test
 	public void testContextCSVFacade() {		
-		assertEquals(listFileCSV.size(),6);
+		assertEquals(listFileCSV.size(),4);
 	}	
 	
 	@Test
 	public void testHeadersContextCSVFacade() {		
-		assertEquals(contextCSV.exploreHeaders().get(0),"DIRECCION");
+		assertEquals(contextCSV.exploreHeaders().get(0),"codigo");
 	}
 	
 	
@@ -76,6 +74,6 @@ public class ImportProcedureMadridTest {
 		int initialCount = importProcedure.numberOfRegisters();
 		importProcedure.importTask(listFileCSV);
 		int finalCount = importProcedure.numberOfRegisters();
-	}
+	}	
 	
 }

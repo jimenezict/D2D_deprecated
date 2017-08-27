@@ -5,6 +5,7 @@ public class FountainDTO {
 	private String ycordenate;
 	private String origineCodeId;
 	private String origine;
+	private String comment;
 	private int id;
 	
 	public String getXcordenate() {
@@ -37,4 +38,10 @@ public class FountainDTO {
 	public void setId(int id) {
 		this.id = id;
 	}		
+	public String getComment(){
+		return comment;
+	}
+	public void setComment(String comment){
+		this.comment = comment;
+	}
 }

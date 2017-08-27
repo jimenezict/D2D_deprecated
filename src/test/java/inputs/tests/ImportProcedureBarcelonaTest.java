@@ -15,7 +15,7 @@ import etl.model.ImportMetadata;
 import inputs.ContextFacade;
 import inputs.webserviceJson.bcn.BarcelonaJSON;
 
-public class ImportProcedureTest {
+public class ImportProcedureBarcelonaTest {
 	List<HashMap<String, String>> listFileCSV,listFileWebService;
 	ImportMetadata importMetadataCSV,importMetadataWS;
 	ContextFacade contextCSV;
@@ -36,6 +36,9 @@ public class ImportProcedureTest {
 		mapping.put("xcordenate", "INVENTARI_COORDENADA_X");
 		mapping.put("ycordenate", "INVENTARI_COORDENADA_Y");
 		mapping.put("origineCodeId", "INVENTARI_CODI");
+		mapping.put("comment1", "INVENTARI_NOM");
+		mapping.put("comment2", "INVENTARI_CARRER");
+		mapping.put("comment3", "INVENTARI_NUMERO_CARRER");
 		
 		importMetadataCSV = new ImportMetadata(mapping,"BarcelonaTestCSV");
 		importMetadataWS = new ImportMetadata(mapping,"BarcelonaTestWS");
@@ -80,6 +83,7 @@ public class ImportProcedureTest {
 		int initialCount = importProcedure.numberOfRegisters();
 		importProcedure.importTask(listFileCSV);
 		int finalCount = importProcedure.numberOfRegisters();
+		assertEquals(finalCount - initialCount,4);
 	}
 	
 	@Test
@@ -88,5 +92,6 @@ public class ImportProcedureTest {
 		int initialCount = importProcedure.numberOfRegisters();
 		importProcedure.importTask(listFileWebService);
 		int finalCount = importProcedure.numberOfRegisters();
+		assertEquals(finalCount - initialCount,5);
 	}	
 }

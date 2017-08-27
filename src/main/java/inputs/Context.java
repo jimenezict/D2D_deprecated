@@ -11,10 +11,6 @@ public class Context {
 	{
 		this.c = c;
 	}
-
-	public void setStrategy(Strategy c) {
-		this.c = c;
-	}
 	
 	public Object openConnection(){
 		return c.openConnection();

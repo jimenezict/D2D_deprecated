@@ -33,6 +33,11 @@ public class ImportProcedure {
 		fountain.setOrigineCodeId(line.get(importMetadata.getMapping().get("origineCodeId")));
 		fountain.setXcordenate(line.get(importMetadata.getMapping().get("xcordenate")));
 		fountain.setYcordenate(line.get(importMetadata.getMapping().get("ycordenate")));
+		fountain.setComment(
+				line.get(importMetadata.getMapping().get("comment1")) + " " + 
+				line.get(importMetadata.getMapping().get("comment2")) + " " + 
+				line.get(importMetadata.getMapping().get("comment3")) 		
+				);
 		return fountain;
 	}
 	

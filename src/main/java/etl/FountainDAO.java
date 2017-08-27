@@ -25,12 +25,13 @@ public class FountainDAO {
 	}
 	public int insert(FountainDTO fountain){
 		int id = 0;
-		String insertSQL = "INSERT INTO FOUNTAINS (xcordenate,ycordenate,origineCodeId,origine) "
+		String insertSQL = "INSERT INTO FOUNTAINS (xcordenate,ycordenate,origineCodeId,origine,comments) "
 				+ "VALUES ("
 				+ "'" + fountain.getXcordenate()+"',"
 				+ "'" + fountain.getYcordenate()+"',"		
 				+ "'" + fountain.getOrigineCodeId()+"',"
-				+ "'" + fountain.getOrigine()+"')";
+				+ "'" + fountain.getOrigine()+"'," 
+				+ "'" + fountain.getComment()+"')";
 		try{
 			jdbcTemplate.update(insertSQL);
 			return getLastId();

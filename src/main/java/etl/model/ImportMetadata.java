@@ -4,20 +4,20 @@ import java.util.HashMap;
 
 public class ImportMetadata {
 	
-	private HashMap<String, String> mapping;
-	private String origine;
+	private HashMap<String, String> mapperSourceToDatabase;
+	private String dataSetOrigine;
 	
-	public ImportMetadata(HashMap<String, String> mapping, String origine) {
+	public ImportMetadata(HashMap<String, String> mapping, String dataSetOrigine) {
 		super();
-		this.mapping = mapping;
-		this.origine = origine;
+		this.mapperSourceToDatabase = mapping;
+		this.dataSetOrigine = dataSetOrigine;
 	}
 	
 	public HashMap<String, String> getMapping() {
-		return mapping;
+		return mapperSourceToDatabase;
 	}
 	
 	public String getOrigine() {
-		return origine;
+		return dataSetOrigine;
 	}
 }
