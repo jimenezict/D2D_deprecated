@@ -4,7 +4,7 @@ Drop 2 Drop is a dream for gathering all the water sources in the world for doin
 
 It is interesting for both, people traveling on the hotest cities of Spain or trekers crossing the Alps
 
-Project had been developed by Ferran Bals and myself as a set of connectors able to collect data from Open Data sources from city councils and governments. At the actual status of the project is able to read from CSV's files and insert it on a structure table (scripts included on the project)
+Project had been developed by Ferran Bals (@franksparks) and myself as a set of connectors able to collect data from Open Data sources from city councils and governments. At the actual status of the project is able to read from CSV's files and insert it on a structure table (scripts included on the project)
 
 It has been developed using TDD techniques, so, on the Junit files we are updating real sources of data
 
